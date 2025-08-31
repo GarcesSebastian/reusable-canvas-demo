@@ -1,5 +1,5 @@
-import { Vector } from "@/library/instances/common/Vector";
-import { Render } from "@/library/Render";
+import { Vector } from "reusable-canvas-preview";
+import { Render } from "reusable-canvas-preview";
 
 export class ShapeTest {
     private _render: Render;

@@ -1,4 +1,4 @@
-import { Render } from "@/library/Render";
+import { Render } from "reusable-canvas-preview";
 
 export class RenderTest {
     private _render: Render;

@@ -1,6 +1,6 @@
 "use client"
 
-import { Render } from "@/library/Render";
+import { Render } from "reusable-canvas-preview";
 import { createContext, useState } from "react";
 
 interface AppContextProps {

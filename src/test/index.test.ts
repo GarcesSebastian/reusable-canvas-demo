@@ -1,4 +1,4 @@
-import { Render } from "@/library/Render";
+import { Render } from "reusable-canvas-preview";
 import { RenderTest } from "./render.test";
 import { ShapeTest } from "./shape.test";
 
