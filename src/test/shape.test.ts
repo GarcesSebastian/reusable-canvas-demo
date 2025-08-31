@@ -1,0 +1,44 @@
+import { Vector } from "@/library/instances/common/Vector";
+import { Render } from "@/library/Render";
+
+export class ShapeTest {
+    private _render: Render;
+
+    public constructor(render: Render) {
+        this._render = render;
+    }
+
+    public start() {
+
+        const rect = this._render.creator.Rect({
+            position: new Vector(200, 200),
+            width: 100,
+            height: 100,
+            color: "blue",
+            zIndex: 2,
+        });
+
+        const circle = this._render.creator.Circle({
+            position: new Vector(100, 100),
+            radius: 50,
+            color: "red",
+            zIndex: 1,
+        });
+
+        this._render.on("top", () => {
+            circle.setTop();
+        })
+
+        this._render.on("bottom", () => {
+            circle.setBottom();
+        })
+
+        this._render.on("front", () => {
+            circle.setFront();
+        })
+
+        this._render.on("back", () => {
+            circle.setBack();
+        })
+    }
+}
