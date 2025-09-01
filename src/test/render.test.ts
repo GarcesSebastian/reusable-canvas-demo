@@ -1,4 +1,4 @@
-import { Render, type _RenderEventClick, type _RenderEventMouseMove } from "reusable-canvas-preview";
+import { Render, type _RenderEventClick } from "reusable-canvas-preview";
 
 export class RenderTest {
     private _render: Render;
@@ -8,11 +8,7 @@ export class RenderTest {
     }
 
     public start() {
-        this._render.on("click", (e: _RenderEventClick) => {
-            console.log(e);
-        });
-
-        this._render.on("mousemove", (e: _RenderEventMouseMove) => {
+        this._render.on("click", (e) => {
             console.log(e);
         });
     }
