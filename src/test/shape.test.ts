@@ -14,17 +14,22 @@ export class ShapeTest {
             width: 100,
             height: 100,
             color: "blue",
-            rotation: 5,
             zIndex: 2,
         });
 
-        Array.from({ length: 100 }).forEach(() => {
-            this._render.creator.Circle({
-                position: new Vector(Render.randomInt(0, this._render.canvas.width), Render.randomInt(0, this._render.canvas.height)),
-                radius: Render.randomInt(5, 5),
-                color: "red",
-                zIndex: 1,
-            });
+        this._render.creator.Rect({
+            position: new Vector(600, 400),
+            width: 100,
+            height: 100,
+            color: "red",
+            zIndex: 1,
+        });    
+        
+        this._render.creator.Circle({
+            position: new Vector(200, 200),
+            radius: 50,
+            color: "green",
+            zIndex: 3,
         });
 
         const speed = 5;
