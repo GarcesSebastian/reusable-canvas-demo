@@ -32,87 +32,20 @@ export class ShapeTest {
             zIndex: 3,
         });
 
-        this._render.creator.Text({
-            position: new Vector(200, 200),
-            text: "Hello",
+        const txt = this._render.creator.Text({
+            position: new Vector(400, 400),
+            text: "Input Text...",
             fontSize: 30,
             fontFamily: "Arial",
             fontWeight: "bold",
-            fontStyle: "italic",
-            textAlign: "center",
-            textBaseline: "bottom",
+            fontStyle: "normal",
+            textAlign: "left",
             color: "white",
+            backgroundColor: "rgba(255,0,0,1)",
+            borderWidth: 2,
+            borderColor: "white",
+            padding: { top: 5, right: 5, bottom: 5, left: 5 },
             zIndex: 4,
-        });
-
-        const speed = 5;
-        const states = {
-            w: false,
-            s: false,
-            a: false,
-            d: false,
-        }
-
-        this._render.on("update", () => {
-            let direction = new Vector(0, 0);
-
-            if (states.w) {
-                direction = direction.add(new Vector(0, -1));
-            }
-
-            if (states.s) {
-                direction = direction.add(new Vector(0, 1));
-            }
-
-            if (states.a) {
-                direction = direction.add(new Vector(-1, 0));
-            }
-
-            if (states.d) {
-                direction = direction.add(new Vector(1, 0));
-            }
-
-            rect.position = rect.position.add(direction.scale(speed));
-
-            if (direction.x !== 0 || direction.y !== 0) {
-                this._render.currentCamera.bind(rect.position);
-            }
-        })
-
-        window.addEventListener("keydown", (e: KeyboardEvent) => {
-            if (e.key === "w") {
-                states.w = true;
-            }
-
-            if (e.key === "s") {
-                states.s = true;
-            }
-
-            if (e.key === "a") {
-                states.a = true;
-            }
-
-            if (e.key === "d") {
-                states.d = true;
-            }
-        });
-
-        window.addEventListener("keyup", (e: KeyboardEvent) => {
-            if (e.key === "w") {
-                states.w = false;
-            }
-
-            if (e.key === "s") {
-                states.s = false;
-            }
-
-            if (e.key === "a") {
-                states.a = false;
-            }
-
-            if (e.key === "d") {
-                states.d = false;
-            }
         });
     }
 }
