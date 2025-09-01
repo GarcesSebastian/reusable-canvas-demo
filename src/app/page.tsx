@@ -24,6 +24,7 @@ export default function Home() {
       history: true,
       zoom: true,
       pan: true,
+      snap: true,
       select: true,
       transform: true,
       resize: true,

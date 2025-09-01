@@ -32,6 +32,19 @@ export class ShapeTest {
             zIndex: 3,
         });
 
+        this._render.creator.Text({
+            position: new Vector(200, 200),
+            text: "Hello",
+            fontSize: 30,
+            fontFamily: "Arial",
+            fontWeight: "bold",
+            fontStyle: "italic",
+            textAlign: "center",
+            textBaseline: "bottom",
+            color: "white",
+            zIndex: 4,
+        });
+
         const speed = 5;
         const states = {
             w: false,
