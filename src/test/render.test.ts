@@ -8,8 +8,12 @@ export class RenderTest {
     }
 
     public start() {
-        this._render.on("click", (e) => {
+        this._render.on("click", (e: _RenderEventClick) => {
             console.log(e);
+        });
+
+        this._render.on("dblclick", (e: _RenderEventClick) => {
+            console.log("dblclick", e);
         });
     }
 }

@@ -1,5 +1,5 @@
 import { Vector } from "reusable-canvas-preview";
-import { Render, type _ShapeEventClick } from "reusable-canvas-preview";
+import { Render, type _ShapeEventClick, type _ShapeEventInput } from "reusable-canvas-preview";
 
 export class ShapeTest {
     private _render: Render;
@@ -25,7 +25,7 @@ export class ShapeTest {
             zIndex: 1,
         });    
         
-        this._render.creator.Circle({
+        const circle = this._render.creator.Circle({
             position: new Vector(200, 200),
             radius: 50,
             color: "green",
@@ -35,7 +35,7 @@ export class ShapeTest {
         const txt = this._render.creator.Text({
             position: new Vector(400, 400),
             text: "Input Text...",
-            fontSize: 30,
+            fontSize: 20,
             fontFamily: "Arial",
             fontWeight: "bold",
             fontStyle: "normal",
@@ -47,5 +47,9 @@ export class ShapeTest {
             padding: { top: 5, right: 5, bottom: 5, left: 5 },
             zIndex: 4,
         });
+
+        txt.on("input", (e: _ShapeEventInput) => {
+            console.log(e.value)
+        })
     }
 }
