@@ -17,14 +17,16 @@ export class ShapeTest {
             zIndex: 2,
         });
 
-        this._render.creator.Rect({
+        this._render.transformer.add(rect);
+
+        const rect2 = this._render.creator.Rect({
             position: new Vector(600, 400),
             width: 100,
             height: 100,
             color: "red",
             zIndex: 1,
-        });    
-        
+        });
+
         const circle = this._render.creator.Circle({
             position: new Vector(200, 200),
             radius: 50,
