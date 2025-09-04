@@ -17,8 +17,6 @@ export class ShapeTest {
             zIndex: 2,
         });
 
-        this._render.transformer.add(rect);
-
         const rect2 = this._render.creator.Rect({
             position: new Vector(600, 400),
             width: 100,
@@ -50,8 +48,6 @@ export class ShapeTest {
             zIndex: 4,
         });
 
-        txt.on("input", (e: _ShapeEventInput) => {
-            console.log(e.value)
-        })
+        txt.on("input", (e: _ShapeEventInput) => {})
     }
 }

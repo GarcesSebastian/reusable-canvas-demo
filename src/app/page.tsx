@@ -25,9 +25,8 @@ export default function Home() {
       zoom: true,
       pan: true,
       snap: true,
-      select: true,
       transform: true,
-      resize: true,
+      selection: true,
       keywords: {
         undo: "ctrl+z",
         redo: "ctrl+y",
@@ -43,6 +42,26 @@ export default function Home() {
         back: "ctrl+shift+k",
       }
     })
+
+    render.transformer.setConfig({
+      borderWidth: 2,
+      borderColor: "rgba(0, 255, 255, 0.5)",
+      nodeColor: "rgba(0, 255, 255, 0.5)",
+      nodeBorderWidth: 2,
+      nodeBorderColor: "rgba(0, 255, 255, 0.5)",
+      nodeSize: 10,
+    })
+
+    render.snapSmart.setConfig({
+      color: "rgba(0, 255, 255, 0.5)",
+      colorViewport: "rgba(0, 255, 255, 0.5)",
+      lineWidth: 2,
+      lineDash: [5, 5],
+      snapFactor: 0.005,
+      snapTolerance: 15,
+      snapDistance: 300
+    })
+
 
     return () => {
       render.stop();
