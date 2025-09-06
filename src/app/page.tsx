@@ -57,9 +57,6 @@ export default function Home() {
       colorViewport: "rgba(0, 255, 255, 0.5)",
       lineWidth: 2,
       lineDash: [5, 5],
-      snapFactor: 0.005,
-      snapTolerance: 15,
-      snapDistance: 300
     })
 
 

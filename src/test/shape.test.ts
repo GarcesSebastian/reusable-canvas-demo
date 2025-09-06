@@ -32,6 +32,35 @@ export class ShapeTest {
             zIndex: 3,
         });
 
+        let isPressed = false;
+        const throtle = 10; //ms
+        let lastUpdate = performance.now();
+
+        this._render.on("update", () => {
+            const now = performance.now();
+            if (now - lastUpdate < throtle) return;
+            lastUpdate = now;
+            
+            if (!isPressed) return;
+            
+            const mousePos = this._render.mousePosition()
+            const screenPos = this._render.toScreenCoordinates(rect.position)
+            const direction = mousePos.sub(screenPos).normalize()
+
+            rect.position = rect.position.add(direction.scale(10));
+        })
+
+        window.addEventListener("keydown", (e: KeyboardEvent) => {
+            if (e.key === "p") {
+                isPressed = !isPressed;
+                if (isPressed) {
+                    this._render.currentCamera.bindForce(rect);
+                } else {
+                    this._render.currentCamera.unbind();
+                }
+            }
+        });
+
         const txt = this._render.creator.Text({
             position: new Vector(400, 400),
             text: "Input Text...",
