@@ -54,7 +54,7 @@ export default function Home() {
 
     render.snapSmart.setConfig({
       color: "rgba(0, 255, 255, 0.5)",
-      colorViewport: "rgba(0, 255, 255, 0.5)",
+      colorViewport: "rgba(255, 255, 255, 1)",
       lineWidth: 2,
       lineDash: [5, 5],
     })

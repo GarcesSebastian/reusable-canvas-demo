@@ -47,7 +47,7 @@ export class ShapeTest {
             const screenPos = this._render.toScreenCoordinates(rect.position)
             const direction = mousePos.sub(screenPos).normalize()
 
-            rect.position = rect.position.add(direction.scale(10));
+            rect.position = rect.position.add(direction.scale(3));
         })
 
         window.addEventListener("keydown", (e: KeyboardEvent) => {
