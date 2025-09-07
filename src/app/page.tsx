@@ -20,6 +20,8 @@ export default function Home() {
     const test = new Test(render);
     test.start();
 
+    render.allowFps()
+
     render.loadConfiguration({
       history: true,
       zoom: true,
@@ -34,7 +36,7 @@ export default function Home() {
         copy: "ctrl+c",
         cut: "ctrl+x",
         paste: "ctrl+v",
-        delete: "delete",
+        delete: "backspace",
         selectAll: "ctrl+a",
         top: "ctrl+i",
         bottom: "ctrl+k",
