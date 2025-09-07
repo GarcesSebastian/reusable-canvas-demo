@@ -77,6 +77,19 @@ export class ShapeTest {
             zIndex: 4,
         });
 
+        Array.from({ length: 1 }).forEach((_, i) => {
+            this._render.creator.Image({
+                position: new Vector(Render.randomInt(0, this._render.canvas.width), Render.randomInt(0, this._render.canvas.height)),
+                src: "https://spriteforge.garcessebastian.com/logo.png",
+                width: 100,
+                height: 100,
+                zIndex: 5,
+                cornerRadius: 10,
+                borderWidth: 2,
+                borderColor: "white",
+            });
+        })
+
         txt.on("input", (e: _ShapeEventInput) => {})
     }
 }

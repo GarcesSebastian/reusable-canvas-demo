@@ -18,8 +18,6 @@ export default function Home() {
     if (!render) return;
 
     const test = new Test(render);
-    test.start();
-
     render.allowFps()
 
     render.loadConfiguration({
@@ -29,6 +27,7 @@ export default function Home() {
       snap: true,
       transform: true,
       selection: true,
+      save: "cookies",
       keywords: {
         undo: "ctrl+z",
         redo: "ctrl+y",
@@ -61,6 +60,7 @@ export default function Home() {
       lineDash: [5, 5],
     })
 
+    // test.start();
 
     return () => {
       render.stop();
