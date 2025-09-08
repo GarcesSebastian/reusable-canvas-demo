@@ -27,11 +27,12 @@ export default function Home() {
       snap: true,
       transform: true,
       selection: true,
-      save: "cookies",
+      save: "localstorage",
       keywords: {
         undo: "ctrl+z",
         redo: "ctrl+y",
         save: "ctrl+s",
+        duplicate: "ctrl+d",
         copy: "ctrl+c",
         cut: "ctrl+x",
         paste: "ctrl+v",
@@ -60,6 +61,7 @@ export default function Home() {
       lineDash: [5, 5],
     })
 
+    render.snapSmart.debug(true);
     // test.start();
 
     return () => {
