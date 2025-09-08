@@ -54,7 +54,7 @@ export class ShapeTest {
             if (e.key === "p") {
                 isPressed = !isPressed;
                 if (isPressed) {
-                    this._render.currentCamera.bindForce(rect);
+                    this._render.currentCamera.bindForce(this._render.childs.find((shape) => shape.id === rect.id)!);
                 } else {
                     this._render.currentCamera.unbind();
                 }
