@@ -20,30 +20,36 @@ export default function Home() {
     const test = new Test(render);
     render.allowFps()
 
-    render.loadConfiguration({
-      history: true,
-      zoom: true,
-      pan: true,
-      snap: true,
-      transform: true,
-      selection: true,
-      save: "localstorage",
-      keywords: {
-        undo: "ctrl+z",
-        redo: "ctrl+y",
-        save: "ctrl+s",
-        duplicate: "ctrl+d",
-        copy: "ctrl+c",
-        cut: "ctrl+x",
-        paste: "ctrl+v",
-        delete: "backspace",
-        selectAll: "ctrl+a",
-        top: "ctrl+i",
-        bottom: "ctrl+k",
-        front: "ctrl+shift+i",
-        back: "ctrl+shift+k",
-      }
-    })
+    const handleSetup = async () => {
+      await render.loadConfiguration({
+        history: true,
+        zoom: true,
+        pan: true,
+        snap: true,
+        transform: true,
+        selection: true,
+        save: "indexeddb",
+        keywords: {
+          undo: "ctrl+z",
+          redo: "ctrl+y",
+          save: "ctrl+s",
+          duplicate: "ctrl+d",
+          copy: "ctrl+c",
+          cut: "ctrl+x",
+          paste: "ctrl+v",
+          delete: "backspace",
+          selectAll: "ctrl+a",
+          top: "ctrl+i",
+          bottom: "ctrl+k",
+          front: "ctrl+shift+i",
+          back: "ctrl+shift+k",
+        }
+      })
+
+      // test.start();
+    }
+
+    handleSetup()
 
     render.transformer.setConfig({
       borderWidth: 2,
@@ -62,7 +68,6 @@ export default function Home() {
     })
 
     render.snapSmart.debug(true);
-    // test.start();
 
     return () => {
       render.stop();
