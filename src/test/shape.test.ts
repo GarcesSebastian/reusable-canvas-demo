@@ -10,7 +10,7 @@ export class ShapeTest {
 
     public start() {
         const rect = this._render.creator.Rect({
-            position: new Vector(0, 0),
+            position: new Vector(200, 200),
             width: 100,
             height: 100,
             color: "blue",
@@ -79,7 +79,7 @@ export class ShapeTest {
 
         Array.from({ length: 1 }).forEach((_, i) => {
             this._render.creator.Image({
-                position: new Vector(0, 0),
+                position: new Vector(Render.randomInt(0, this._render.canvas.width), Render.randomInt(0, this._render.canvas.height)),
                 src: "https://spriteforge.garcessebastian.com/logo.png",
                 width: 100,
                 height: 100,

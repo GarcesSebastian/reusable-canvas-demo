@@ -28,7 +28,7 @@ export default function Home() {
         snap: true,
         transform: true,
         selection: true,
-        save: "indexeddb",
+        save: "localstorage",
         keywords: {
           undo: "ctrl+z",
           redo: "ctrl+y",
