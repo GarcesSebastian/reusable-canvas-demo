@@ -59,16 +59,6 @@ export class ShapeTest {
                     this._render.currentCamera.unbind();
                 }
             }
-
-            if (e.key === "g") {
-                this._render.exporter.download({
-                    format: "png",
-                    quality: "high",
-                    name: "test",
-                }).then(() => {
-                    console.log("Exported");
-                })
-            }
         });
 
         const txt = this._render.creator.Text({
