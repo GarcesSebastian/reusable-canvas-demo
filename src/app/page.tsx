@@ -24,7 +24,6 @@ export default function Home() {
     render.allowFps()
 
     const handleSetup = async () => {
-      // Set callbacks BEFORE loadConfiguration
       render.onSavingProgress = (progress) => {
         console.log(progress);
         setSavingProgress(progress);
@@ -55,7 +54,6 @@ export default function Home() {
         snap: true,
         transform: true,
         selection: true,
-        save: "indexeddb",
         keywords: {
           undo: "ctrl+z",
           redo: "ctrl+y",
@@ -73,7 +71,7 @@ export default function Home() {
         }
       })
 
-      // test.start();
+      test.start();
     }
 
     handleSetup()
