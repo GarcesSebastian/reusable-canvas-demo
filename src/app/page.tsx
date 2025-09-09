@@ -23,7 +23,6 @@ export default function Home() {
     if (!render) return;
 
     const dimensions = render.exporter.getDimension();
-    console.log(dimensions);
     if (!dimensions) return;
     
     render.exporter.download({
@@ -85,6 +84,7 @@ export default function Home() {
         snap: true,
         transform: true,
         selection: true,
+        save: "indexeddb",
         keywords: {
           undo: "ctrl+z",
           redo: "ctrl+y",
@@ -102,7 +102,7 @@ export default function Home() {
         }
       })
 
-      test.start();
+      // test.start();
     }
 
     handleSetup()
@@ -202,27 +202,57 @@ export default function Home() {
 
   const ExportButton = () => {
     return (
-      <button
-        onClick={cutting ? handleEndDownload : handleDownload}
-        className="fixed top-4 left-4 z-50 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-colors duration-200 flex items-center space-x-2"
-        disabled={!render}
-      >
-        <svg 
-          className="w-5 h-5" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24" 
-          xmlns="http://www.w3.org/2000/svg"
+      <div className="flex items-center space-x-2 z-50 fixed top-4 left-4">
+        <button
+          onClick={cutting ? handleEndDownload : handleDownload}
+          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-colors duration-200 flex items-center space-x-2"
+          disabled={!render}
         >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
-          />
-        </svg>
-        <span>{cutting ? "Terminar" : "Exportar"}</span>
-      </button>
+          <svg 
+            className="w-5 h-5" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24" 
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
+            />
+          </svg>
+          <span>{cutting ? "Terminar" : "Exportar"}</span>
+        </button>
+      
+        {cutting && (
+          <button
+            onClick={() => {
+              render?.exporter.abort()
+              setCutting(false)
+              setHasUnsavedChanges(false)
+            }}
+            className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-colors duration-200 flex items-center space-x-2"
+            disabled={!render}
+          >
+            <svg 
+              className="w-5 h-5" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
+              />
+            </svg>
+            <span>Abortar</span>
+          </button>
+        )}
+      </div>
     )
   }
 
