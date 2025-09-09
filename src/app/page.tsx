@@ -14,15 +14,16 @@ export default function Home() {
   const handleDownload = () => {
     if (!render) return;
     
-    render.exporter.download({
-      format: "png",
-      quality: "high",
-      name: "canvas-export",
-    }).then(() => {
-      console.log("Exported");
-    }).catch((error) => {
-      console.error("Export failed:", error);
-    });
+    render.exporter.startExportCut();
+    // render.exporter.download({
+    //   format: "png",
+    //   quality: "high",
+    //   name: "canvas-export",
+    // }).then(() => {
+    //   console.log("Exported");
+    // }).catch((error) => {
+    //   console.error("Export failed:", error);
+    // });
   };
 
   useEffect(() => {
