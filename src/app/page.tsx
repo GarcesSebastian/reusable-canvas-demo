@@ -7,6 +7,7 @@ import { Test } from "@/test/index.test";
 export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { render, setup } = useApp();
+  const [cutting, setCutting] = useState(false);
   const [savingProgress, setSavingProgress] = useState<{ p: number; state: boolean } | null>(null);
   const [loadingProgress, setLoadingProgress] = useState<{ p: number; state: boolean } | null>(null);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
@@ -15,15 +16,30 @@ export default function Home() {
     if (!render) return;
     
     render.exporter.startExportCut();
-    // render.exporter.download({
-    //   format: "png",
-    //   quality: "high",
-    //   name: "canvas-export",
-    // }).then(() => {
-    //   console.log("Exported");
-    // }).catch((error) => {
-    //   console.error("Export failed:", error);
-    // });
+    setCutting(true);
+  };
+
+  const handleEndDownload = () => {
+    if (!render) return;
+
+    const dimensions = render.exporter.getDimension();
+    console.log(dimensions);
+    if (!dimensions) return;
+    
+    render.exporter.download({
+      format: "png",
+      quality: "high",
+      name: "canvas-export",
+      cutStart: dimensions.start,
+      cutEnd: dimensions.end
+    })
+    .then(() => {
+      render.exporter.endExportCut();
+      setCutting(false);
+    })
+    .catch((error) => {
+      console.error("Export failed:", error);
+    });
   };
 
   useEffect(() => {
@@ -69,7 +85,6 @@ export default function Home() {
         snap: true,
         transform: true,
         selection: true,
-        save: "indexeddb",
         keywords: {
           undo: "ctrl+z",
           redo: "ctrl+y",
@@ -87,7 +102,7 @@ export default function Home() {
         }
       })
 
-      // test.start();
+      test.start();
     }
 
     handleSetup()
@@ -185,12 +200,10 @@ export default function Home() {
     );
   };
 
-  return (
-    <div className="w-full min-h-screen">
-      <canvas ref={canvasRef} className="w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-emerald-500"></canvas>
-      
+  const ExportButton = () => {
+    return (
       <button
-        onClick={handleDownload}
+        onClick={cutting ? handleEndDownload : handleDownload}
         className="fixed top-4 left-4 z-50 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition-colors duration-200 flex items-center space-x-2"
         disabled={!render}
       >
@@ -208,8 +221,16 @@ export default function Home() {
             d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
           />
         </svg>
-        <span>Descargar PNG</span>
+        <span>{cutting ? "Terminar" : "Exportar"}</span>
       </button>
+    )
+  }
+
+  return (
+    <div className="w-full min-h-screen">
+      <canvas ref={canvasRef} className="w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-emerald-500"></canvas>
+      
+      <ExportButton/>
       
       {savingProgress && <RadialProgress progress={savingProgress} type="saving" />}
       {loadingProgress && <RadialProgress progress={loadingProgress} type="loading" />}
