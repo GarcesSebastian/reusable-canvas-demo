@@ -1,5 +1,5 @@
 import { Vector } from "reusable-canvas-preview";
-import { Render, type _ShapeEventClick, type _ShapeEventInput } from "reusable-canvas-preview";
+import { Render } from "reusable-canvas-preview";
 
 export class ShapeTest {
     private _render: Render;
@@ -89,7 +89,5 @@ export class ShapeTest {
                 borderColor: "white",
             });
         })
-
-        txt.on("input", (e: _ShapeEventInput) => {})
     }
 }

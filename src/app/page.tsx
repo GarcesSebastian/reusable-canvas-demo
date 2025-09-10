@@ -3,6 +3,7 @@
 import { useApp } from "@/hooks/useApp";
 import { useEffect, useRef, useState } from "react";
 import { Test } from "@/test/index.test";
+import { Rect } from "../../../reusable-canvas/dist/library/instances/_shapes/Rect";
 
 export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -92,7 +93,6 @@ export default function Home() {
         snap: true,
         transform: true,
         selection: true,
-        save: "indexeddb",
         keywords: {
           undo: "ctrl+z",
           redo: "ctrl+y",
@@ -110,7 +110,7 @@ export default function Home() {
         }
       })
 
-      // test.start();
+      test.start();
     }
 
     handleSetup()
