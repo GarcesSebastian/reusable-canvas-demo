@@ -71,9 +71,6 @@ export class ShapeTest {
             textAlign: "left",
             color: "white",
             backgroundColor: "rgba(255,0,0,1)",
-            borderWidth: 2,
-            borderColor: "white",
-            padding: { top: 5, right: 5, bottom: 5, left: 5 },
             zIndex: 4,
         });
 
@@ -84,7 +81,7 @@ export class ShapeTest {
                 width: 100,
                 height: 100,
                 zIndex: 5,
-                cornerRadius: 10,
+                borderRadius: 10,
                 borderWidth: 2,
                 borderColor: "white",
             });

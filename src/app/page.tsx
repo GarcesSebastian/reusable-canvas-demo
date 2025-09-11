@@ -4,6 +4,7 @@ import { useApp } from "@/hooks/useApp";
 import { useEffect, useRef, useState } from "react";
 import { Test } from "@/test/index.test";
 import { Rect } from "../../../reusable-canvas/dist/library/instances/_shapes/Rect";
+import { RenderConfiguration } from "../../../reusable-canvas/dist/library/helpers/Render.config";
 
 export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -107,7 +108,33 @@ export default function Home() {
           bottom: "ctrl+k",
           front: "ctrl+shift+i",
           back: "ctrl+shift+k",
+        },
+        properties: {
+          minZoom: 0.1,
+          maxZoom: 30,
+          zoomFactor: 1.1
         }
+      })
+
+      console.log(RenderConfiguration.defaultProperties())
+
+      render.transformer.setConfig({
+        borderWidth: 2,
+        borderColor: "#0c89e4",
+        nodeBorderColor: "#0c89e4",
+        nodeColor: "rgba(255, 255, 255, 1)",
+        nodeBorderWidth: 1,
+        nodeSize: 8,
+        target: true,
+        targetColor: "rgba(255, 255, 255, 1)",
+        targetBackgroundColor: "#0c89e4",
+        targetBorderWidth: 2,
+        targetBorderColor: "#0c89e4",
+        targetRadius: 10,
+        targetFontSize: 12,
+        targetFontFamily: "sans-serif",
+        targetFontWeight: "500",
+        targetFontStyle: "normal"
       })
 
       test.start();
