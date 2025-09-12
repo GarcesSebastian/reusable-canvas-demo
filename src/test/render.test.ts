@@ -1,4 +1,4 @@
-import { Render, type _RenderEventClick } from "reusable-canvas-preview";
+import { Render } from "reusable-canvas-preview";
 
 export class RenderTest {
     private _render: Render;
@@ -8,8 +8,8 @@ export class RenderTest {
     }
 
     public start() {
-        this._render.on("click", (e: _RenderEventClick) => {});
-        this._render.on("dblclick", (e: _RenderEventClick) => {});
+        this._render.on("click", (e) => {});
+        this._render.on("dblclick", (e) => {});
     }
 }
     

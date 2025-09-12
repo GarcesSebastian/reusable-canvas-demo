@@ -3,7 +3,6 @@
 import { useApp } from "@/hooks/useApp";
 import { useEffect, useRef, useState } from "react";
 import { Test } from "@/test/index.test";
-import { Rect } from "../../../reusable-canvas/dist/library/instances/_shapes/Rect";
 import { RenderConfiguration } from "../../../reusable-canvas/dist/library/helpers/Render.config";
 
 export default function Home() {
@@ -32,7 +31,7 @@ export default function Home() {
     
     try {
       await render.exporter.download({
-        format: "png",
+        format: "json",
         quality: "high",
         name: "mi-lienzo",
         scale: 2,
@@ -110,8 +109,6 @@ export default function Home() {
           back: "ctrl+shift+k",
         },
         properties: {
-          minZoom: 0.1,
-          maxZoom: 30,
           zoomFactor: 1.1
         }
       })
@@ -137,28 +134,27 @@ export default function Home() {
         targetFontStyle: "normal"
       })
 
+      render.snapSmart.setConfig({
+        color: "rgba(0, 255, 255, 0.5)",
+        colorViewport: "rgba(255, 255, 255, 1)",
+        lineWidth: 2,
+        lineDash: [5, 5],
+      })
+
+      render.snapSmart.debug(true);
+
       test.start();
     }
 
     handleSetup()
 
-    render.transformer.setConfig({
-      borderWidth: 2,
-      borderColor: "rgba(0, 255, 255, 0.5)",
-      nodeColor: "rgba(0, 255, 255, 0.5)",
-      nodeBorderWidth: 2,
-      nodeBorderColor: "rgba(0, 255, 255, 0.5)",
-      nodeSize: 10,
+    render.on("save", (e) => {
+      console.log("save", e.data)
     })
 
-    render.snapSmart.setConfig({
-      color: "rgba(0, 255, 255, 0.5)",
-      colorViewport: "rgba(255, 255, 255, 1)",
-      lineWidth: 2,
-      lineDash: [5, 5],
+    render.on("load", (e) => {
+      console.log("load", e.data)
     })
-
-    render.snapSmart.debug(true);
 
     return () => {
       render.stop();
